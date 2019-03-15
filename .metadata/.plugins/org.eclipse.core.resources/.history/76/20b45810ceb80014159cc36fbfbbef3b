@@ -1,0 +1,58 @@
+import java.util.Scanner;
+public class AckermanTrace {
+private static String indent= " "; //indentantion for trace
+	public static void main(String[] args) {
+//int m = 2, 
+//n = 1;
+
+		Scanner number= new Scanner (System.in);
+		int m;
+		int n;
+		System.out.println("Input M: ");
+		if(number.hasNextInt())
+		m=number.nextInt();
+		else{
+			System.out.println("Error: you must enter an integer");
+			System.out.println("Program is ending");
+			return;
+		}
+		System.out.println("M: "+m);
+	
+		System.out.println("Input n: ");
+		if(number.hasNextInt())
+		n= number.nextInt();
+		else{
+			System.out.println("Error: you must enter an integer");
+			System.out.println("Program is ending");
+			return;
+		}
+		System.out.println("N: "+n );
+		System.out.println("Start Ackerman: A(" + m + ", " + n + ")  ");
+		System.out.println( " Answer = " + Ackerman(m, n));
+}
+public static int Ackerman(int m, int n) {
+indent= indent+ "";
+
+if (m == 0) {//if m=0
+	indent = indent.substring(2);
+int ans = n + 1;
+System.out.println(indent+"Return: " + ans);
+return ans;// it will give u the result from the first number
+}
+
+if (n == 0) {//if n=0
+	indent = indent.substring(2);
+int ans = Ackerman(m - 1, 1);
+//return Ackerman(m - 1, 1);
+System.out.println(indent+"Return: " + ans);
+return ans;
+}
+if (m>0 && n>0){
+	indent = indent.substring(2);
+int ans = Ackerman(m - 1, Ackerman(m, n - 1));
+System.out.println(indent+"Leave Ackerman: A(" + m + ", " + n + ") value: " + ans);
+return ans;
+}
+return Ackerman( m,  n);
+}
+}
